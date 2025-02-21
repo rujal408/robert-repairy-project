@@ -1,6 +1,7 @@
 import React from "react";
 import SidebarPanel from "@/container/side-bar";
 import AppHeader from "@/layouts/app-header";
+import "react-big-calendar/lib/css/react-big-calendar.css";
 
 const ApplicationLayout = ({ children }) => {
   return (
