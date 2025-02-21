@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useMemo } from "react";
 import { Calendar, dayjsLocalizer } from "react-big-calendar";
 import { getEvents } from "../utils/date";
 import dayjs from "dayjs";
@@ -22,7 +22,7 @@ const customEventStyle = () => {
 };
 
 const AnalyticsPage = ({ data }) => {
-  const events = getEvents(data);
+  const events = useMemo(() => getEvents(data), [data]);
 
   return (
     <Calendar

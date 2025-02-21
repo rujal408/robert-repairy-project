@@ -9,7 +9,7 @@ export const getEvents = (bookings) => {
   });
 
   // Generate events including days with zero bookings
-  const allDates = Array.from({ length: 30 }, (_, i) =>
+  const allDates = Array.from({ length: 365 }, (_, i) =>
     dayjs("2025-02-01").add(i, "days").format("YYYY-MM-DD")
   );
 
