@@ -6,6 +6,7 @@ import { getEvents } from "../utils/date";
 import dayjs from "dayjs";
 
 const localizer = dayjsLocalizer(dayjs);
+
 const customEventStyle = () => {
   return {
     style: {
