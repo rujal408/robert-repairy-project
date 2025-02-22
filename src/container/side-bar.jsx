@@ -1,10 +1,9 @@
 "use client";
 
-import Link from "next/link";
-import React from "react";
 import nav from "@/constant/nav";
-import { usePathname } from "next/navigation";
 import { CircleHelp, RefreshCcwDot, Unplug } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const navFooter = [
   {
@@ -49,7 +48,7 @@ const SideBarPanel = () => {
             {nav.map((n) => (
               <Link
                 className={`flex gap-1 p-1 font-semibold text-sm rounded ${
-                  pathname === n.link ? "bg-gray-100" : ""
+                  pathname.includes(n.link) ? "bg-gray-100" : ""
                 }`}
                 key={n.title}
                 href={n.link}
