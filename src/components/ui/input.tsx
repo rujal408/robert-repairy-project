@@ -1,17 +1,21 @@
-import { cn } from "@/lib/utils"; // Ensure your cn utility is imported
+import { cn } from "@/lib/utils";
 import React, { useEffect, useRef, useState } from "react";
 
-interface InputProps extends React.ComponentProps<"input"> {
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
+  className?: string;
+  placeholder?: string;
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, label, placeholder, ...props }, ref) => {
+    const inputRef = useRef<HTMLInputElement>(null);
     const [generatedId, setGeneratedId] = useState<string | null>(null);
-    const stableIdRef = useRef(props.id || `input-${crypto.randomUUID()}`);
 
     useEffect(() => {
-      if (!props.id) setGeneratedId(stableIdRef.current);
+      if (!props.id && inputRef.current) {
+        setGeneratedId(`input-${crypto.randomUUID()}`);
+      }
     }, [props.id]);
 
     const inputId = props.id || generatedId || "";
@@ -22,7 +26,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         <input
           id={inputId}
           type={type}
-          ref={ref}
+          ref={ref || inputRef}
           placeholder={placeholder || " "}
           className={cn(
             "peer block w-full rounded-md border bg-white px-2 pt-3 pb-1 text-sm text-foreground",
@@ -45,6 +49,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     );
   }
 );
+
 Input.displayName = "Input";
 
 export { Input };
