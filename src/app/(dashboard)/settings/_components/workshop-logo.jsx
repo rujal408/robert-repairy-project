@@ -13,13 +13,11 @@ const WorkShopLogo = () => {
         width={100}
         alt=""
       />
-      <div>
-        <label className="flex gap-1 px-3 py-[4px] bg-primary w-fit rounded text-white text-sm items-center">
-          <Upload size="12px" />
-          Upload photo
-          <input type="file" className="hidden" />
-        </label>
-      </div>
+      <label className="flex cursor-pointer gap-1 px-3 py-[4px] bg-primary w-fit rounded text-white text-sm items-center">
+        <Upload size="12px" />
+        Upload photo
+        <input type="file" className="hidden" />
+      </label>
     </div>
   );
 };
