@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { Bell, SearchIcon, Sun } from "lucide-react";
-import React from "react";
 
 const AppHeader = () => {
   return (
@@ -17,7 +16,7 @@ const AppHeader = () => {
           +&nbsp;&nbsp;Booking
         </Button>
 
-        <span className="text-blue-600 ml-2">
+        <span className="text-blue-600 ml-2 cursor-pointer">
           <Sun height="20px" width="20px" />
         </span>
       </div>

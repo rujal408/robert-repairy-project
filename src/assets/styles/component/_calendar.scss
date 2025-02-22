@@ -1,3 +1,4 @@
+// Overide the design of react-big-calendar
 .rbc-calendar {
   .rbc-month-view {
     .rbc-month-row {
@@ -8,7 +9,7 @@
       }
       .rbc-row-content {
         .rbc-row {
-          .rbc-current > button {
+          .rbc-now.rbc-current > button {
             background-color: blue;
             color: white;
             border-radius: 10px;
