@@ -8,9 +8,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { signIn } from "@/lib/auth";
 import { EyeClosed, Mail } from "lucide-react";
 import { useRouter } from "next/navigation";
-import React from "react";
 import { useForm } from "react-hook-form";
 
 const LoginForm = () => {
@@ -23,8 +23,9 @@ const LoginForm = () => {
   const router = useRouter();
 
   const onSubmit = (data) => {
-    console.log(data);
-    router.push("/analytics");
+    signIn(data, { redirect: false }).then(() => {
+      router.push("/analytics");
+    });
   };
 
   return (
@@ -40,11 +41,12 @@ const LoginForm = () => {
           <FormField
             control={form.control}
             name="email"
+            rules={{ required: "Please provide email" }}
             render={({ field }) => (
               <FormItem className="relative">
                 <FormControl>
                   <div className="relative">
-                    <Input label="Email" placeholder="Email" {...field} />
+                    <Input label="Email" {...field} />
                     <Mail className="absolute text-blue-300 w-2 right-3 top-1/2 -translate-y-1/2  cursor-pointer" />
                   </div>
                 </FormControl>
@@ -56,16 +58,12 @@ const LoginForm = () => {
             control={form.control}
             name="password"
             type="password"
+            rules={{ required: "Please enter password" }}
             render={({ field }) => (
               <FormItem className="relative">
                 <FormControl>
                   <div className="relative">
-                    <Input
-                      label="Password"
-                      type="password"
-                      placeholder="Password"
-                      {...field}
-                    />
+                    <Input label="Password" type="password" {...field} />
                     <EyeClosed className="absolute text-blue-300 w-2 right-3 top-1/2 -translate-y-1/2  cursor-pointer" />
                   </div>
                 </FormControl>

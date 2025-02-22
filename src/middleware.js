@@ -3,7 +3,6 @@ import { auth } from "./lib/auth";
 
 const authenticatedRoutes = ["/settings", "/analytics", "/calendar"];
 
-// This function can be marked `async` if using `await` inside
 export async function middleware(request) {
   const authenticated = await auth();
   const pathname = request?.nextUrl?.pathname;
