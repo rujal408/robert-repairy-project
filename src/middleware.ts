@@ -9,9 +9,11 @@ export async function middleware(request: NextRequest) {
   const authenticated = await auth();
   const pathname = request?.nextUrl?.pathname;
 
+  // If user is loged in and tries to access login page then return to dashboard
   if (authenticated && pathname === "/") {
     return NextResponse.redirect(new URL("/analytics", request.url));
   }
+  // If user tries to access dashboard pages check for authentication
   if (authenticatedRoutes.includes(pathname)) {
     if (authenticated) {
       return NextResponse.next();
