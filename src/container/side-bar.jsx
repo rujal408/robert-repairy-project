@@ -1,9 +1,10 @@
 "use client";
 
+import { logoutUser } from "@/actions/auth";
 import nav from "@/constant/nav";
 import { CircleHelp, RefreshCcwDot, Unplug } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const navFooter = [
   {
@@ -29,6 +30,25 @@ const navFooter = [
 
 const SideBarPanel = () => {
   const pathname = usePathname();
+  const router = useRouter();
+
+  const handleClick = async (id) => {
+    switch (id) {
+      case 1:
+        // code block
+        break;
+      case 2:
+        // code block
+        break;
+      case 3: {
+        await logoutUser();
+        router.push("/");
+        break;
+      }
+      default:
+      // code block
+    }
+  };
   return (
     <div className="sticky w-[220px] p-2 h-[100vh] bg-white">
       <div className="flex flex-col justify-between h-full">
@@ -61,7 +81,11 @@ const SideBarPanel = () => {
         </div>
         <div className="border-t-[1px] border-gray-300 pt-1 space-y-2 text-sm font-semibold">
           {navFooter.map((np) => (
-            <div key={np.id} className="flex gap-1 cursor-pointer">
+            <div
+              onClick={() => handleClick(np.id)}
+              key={np.id}
+              className="flex gap-1 cursor-pointer"
+            >
               {np.icon}
               {np.name}
             </div>

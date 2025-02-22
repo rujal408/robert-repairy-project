@@ -13,7 +13,6 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     return (
       <div className="relative w-full">
-        {/* Input Field */}
         <input
           ref={(node) => {
             if (typeof ref === "function") ref(node);
@@ -32,7 +31,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           onClick={() => inputRef?.current?.focus()}
           className={cn(
             `absolute z-40 text-primary cursor-text left-[18px] ${
-              props.placeholder ? "text-xs top-2" : "top-1/2 text-base"
+              props.placeholder || props.value
+                ? "text-xs top-2"
+                : "top-1/2 text-base"
             } -translate-y-1/2 transition-all peer-focus:top-2 peer-focus:text-xs`
           )}
         >

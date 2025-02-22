@@ -1,4 +1,6 @@
 "use client";
+
+import { loginUser } from "@/actions/auth";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -8,7 +10,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { signIn } from "@/lib/auth";
 import { EyeClosed, Mail } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -23,9 +24,14 @@ const LoginForm = () => {
   const router = useRouter();
 
   const onSubmit = (data) => {
-    signIn(data, { redirect: false }).then(() => {
-      router.push("/analytics");
-    });
+    loginUser(data)
+      .then((res) => {
+        console.log(res);
+        router.push("/analytics");
+      })
+      .catch((e) => {
+        console.log("ErrorResponded", e);
+      });
   };
 
   return (
