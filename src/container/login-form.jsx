@@ -26,7 +26,6 @@ const LoginForm = () => {
   const onSubmit = (data) => {
     loginUser(data)
       .then((res) => {
-        console.log(res);
         router.push("/analytics");
       })
       .catch((e) => {
