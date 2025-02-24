@@ -1,11 +1,11 @@
 import { auth } from "@/lib/auth";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 const authenticatedRoutes = ["/settings", "/analytics", "/calendar"];
 
 // Implement Middleware on authenticated routes given above
 
-export async function middleware(request: NextRequest) {
+export async function middleware(request) {
   const authenticated = await auth();
   const pathname = request?.nextUrl?.pathname;
 
